@@ -13,7 +13,7 @@ type URL struct {
 
 // Parse parses a mongodb url provided this format:
 //
-//		[mongodb://][user:pass@]host[:port][[/database][?options]
+//		mongodb://[user:pass@]host[:port]/database
 //
 func Parse(urlStr string) (*URL, error) {
 	u, err := url.Parse(urlStr)
