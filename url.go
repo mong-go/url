@@ -8,7 +8,7 @@ import (
 
 // URL wraps url.URL providing extra methods for mongodb urls
 type URL struct {
-	*url.URL
+	URL *url.URL
 }
 
 // Parse parses a mongodb url provided this format:
@@ -28,7 +28,17 @@ func Parse(urlStr string) (*URL, error) {
 
 // Database name
 func (u URL) Database() string {
-	return u.Path[1:]
+	return u.URL.Path[1:]
+}
+
+// User returns the URL Userinfo
+func (u URL) User() *url.Userinfo {
+	return u.URL.User
+}
+
+// Scheme mongodb
+func (u URL) Scheme() string {
+	return u.URL.Scheme
 }
 
 // Host returns the ip/domain portion of the host only
@@ -51,9 +61,14 @@ func (u URL) Port() string {
 // ShortString returns the compiled URL minus the database path
 func (u URL) ShortString() string {
 	f := "%s://%s"
-	if u.User != nil {
-		f = fmt.Sprintf("%s://%s@%s", "%s", u.User.String(), "%s")
+	if us := u.User(); us != nil {
+		f = fmt.Sprintf("%s://%s@%s", "%s", us.String(), "%s")
 	}
 
 	return fmt.Sprintf(f, u.URL.Scheme, u.URL.Host)
+}
+
+// String calls u.URL.String()
+func (u URL) String() string {
+	return u.URL.String()
 }

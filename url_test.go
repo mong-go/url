@@ -11,12 +11,12 @@ func TestParseBasicMongoURL(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	assert.Equal(t, "mongodb", u.Scheme)
+	assert.Equal(t, "mongodb", u.Scheme())
 	assert.Equal(t, "127.0.0.1", u.Host())
 	assert.Equal(t, "30001", u.Port())
 	assert.Equal(t, "databasename", u.Database())
 
-	ui := u.User
+	ui := u.User()
 	assert.Equal(t, "user", ui.Username())
 
 	p, set := ui.Password()
