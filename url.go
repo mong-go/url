@@ -8,7 +8,7 @@ import (
 
 // URL wraps url.URL providing extra methods for mongodb urls
 type URL struct {
-	URL *url.URL
+	*url.URL
 }
 
 // Parse parses a mongodb url provided this format:
