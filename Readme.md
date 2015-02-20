@@ -1,12 +1,26 @@
-# gomon/url
+# url
 
-[![Build Status](https://travis-ci.org/gomon/url.svg?branch=master)][ci]
-[![GoDoc](https://godoc.org/github.com/gomon/url?status.svg)][gd]
+[![Build Status](https://travis-ci.org/mong-go/url.svg?branch=master)][ci]
+[![GoDoc](https://godoc.org/github.com/mong-go/url.v2?status.svg)][gd]
 
-  [ci]: https://travis-ci.org/gomon/url
-  [gd]: http://godoc.org/github.com/gomon/url
+  [ci]: https://travis-ci.org/mong-go/url
+  [gd]: http://godoc.org/github.com/mong-go/url.v2
 
-Basic MongoDB URL parser
+MongoDB URL parser
+
+## Install
+
+    go get gopkg.in/mong-go/url.v1
+
+## Usage
+
+      u := url.Parse("mongodb://user:secret@example.com:12345/database")
+
+      // u.Database() => "database"
+      // u.User()     => *url.UserInfo
+      // u.Scheme()   => "mongodb"
+      // u.Host()     => "example.com"
+      // u.Port()     => "12345"
 
 
 ## License
